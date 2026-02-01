@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard — File Vault</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { fontFamily: { sans: ['Outfit', 'system-ui', 'sans-serif'] } } } }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script>(function(){var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t='dark';document.documentElement.classList.add(t==='light'?'theme-light':'theme-dark');})();</script>
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-100 font-sans antialiased">
+  <div class="max-w-2xl mx-auto px-4 sm:px-6 py-6 sm:py-12">
+    <header class="flex flex-wrap items-center justify-between gap-3 mb-8 sm:mb-10">
+      <h1 class="text-xl sm:text-2xl font-bold text-white">Dashboard</h1>
+      <div class="flex items-center gap-2">
+        <a href="account.html" class="rounded-xl border border-slate-600 px-4 py-3 sm:py-2 text-slate-400 text-sm transition hover:text-white hover:border-slate-500 touch-manipulation">
+          Account
+        </a>
+        <a id="admin-header-btn" href="admin.html" class="hidden rounded-xl bg-amber-500 px-4 py-3 sm:py-2 text-slate-900 text-sm font-medium transition hover:bg-amber-400 touch-manipulation">
+          Go to Admin
+        </a>
+        <button
+          onclick="logout()"
+          class="rounded-xl border border-slate-600 px-4 py-3 sm:py-2 text-slate-400 text-sm transition hover:text-white hover:border-slate-500 touch-manipulation"
+        >
+          Logout
+        </button>
+      </div>
+    </header>
+
+    <div class="rounded-2xl border border-slate-800 bg-slate-900/50 backdrop-blur-sm p-4 sm:p-8 shadow-xl">
+      <h2 class="text-base sm:text-lg font-semibold text-white mb-4">Quick actions</h2>
+      <ul class="space-y-2 sm:space-y-3">
+        <li>
+          <a
+            href="upload.html"
+            class="flex items-center gap-3 rounded-xl border border-slate-700 bg-slate-800/50 p-4 transition hover:border-slate-600 hover:bg-slate-800 active:bg-slate-800 touch-manipulation"
+          >
+            <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500/20 text-amber-400">↑</span>
+            <div class="min-w-0 flex-1">
+              <span class="font-medium text-white">Upload File</span>
+              <p class="text-xs sm:text-sm text-slate-400">Share a file with optional password and expiry</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a
+            href="files.html"
+            class="flex items-center gap-3 rounded-xl border border-slate-700 bg-slate-800/50 p-4 transition hover:border-slate-600 hover:bg-slate-800 active:bg-slate-800 touch-manipulation"
+          >
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-600 text-slate-300">📁</span>
+            <div class="min-w-0 flex-1">
+              <span class="font-medium text-white">My Files</span>
+              <p class="text-xs sm:text-sm text-slate-400">View, download, or delete your uploaded files</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a
+            href="notes-list.html"
+            class="flex items-center gap-3 rounded-xl border border-slate-700 bg-slate-800/50 p-4 transition hover:border-slate-600 hover:bg-slate-800 active:bg-slate-800 touch-manipulation"
+          >
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-500/20 text-emerald-400">📝</span>
+            <div class="min-w-0 flex-1">
+              <span class="font-medium text-white">Collaborative Notes</span>
+              <p class="text-xs sm:text-sm text-slate-400">Share notes and edit together in real time (like Google Docs)</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a
+            href="account.html"
+            class="flex items-center gap-3 rounded-xl border border-slate-700 bg-slate-800/50 p-4 transition hover:border-slate-600 hover:bg-slate-800 active:bg-slate-800 touch-manipulation"
+          >
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-600 text-slate-300">👤</span>
+            <div class="min-w-0 flex-1">
+              <span class="font-medium text-white">Account</span>
+              <p class="text-xs sm:text-sm text-slate-400">Display name, password, and email</p>
+            </div>
+          </a>
+        </li>
+        <li id="admin-link-wrap" class="hidden">
+          <a
+            href="admin.html"
+            class="flex items-center gap-3 rounded-xl border border-slate-700 bg-slate-800/50 p-4 transition hover:border-slate-600 hover:bg-slate-800 active:bg-slate-800 touch-manipulation"
+          >
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-500/20 text-amber-400">⚙</span>
+            <div class="min-w-0 flex-1">
+              <span class="font-medium text-white">Admin</span>
+              <p class="text-xs sm:text-sm text-slate-400">Admin privileges — overview, users, files, notes, audit, settings</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <p class="mt-6 text-center pb-4">
+      <a href="index.html" class="text-slate-400 hover:text-white text-sm transition">← Back to home</a>
+    </p>
+  </div>
+  <script src="js/supabaseConfig.generated.js"></script>
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/dashboard-admin.js"></script>
+  <script src="js/theme.js"></script>
+</body>
+</html>

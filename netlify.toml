@@ -1,0 +1,54 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+# Short link redirect: /s/xyz -> redirect function returns 302 to actual URL
+[[redirects]]
+  from = "/s/*"
+  to = "/.netlify/functions/redirect?code=:splat"
+  status = 200
+  force = true
+
+# Hidden admin portal (optional; admin panel is now at /admin in React)
+[[redirects]]
+  from = "/.internal/panel"
+  to = "/admin.html"
+  status = 200
+  force = true
+
+# Vite build assets (CSS/JS) must be served as files, not index.html
+[[redirects]]
+  from = "/assets/*"
+  to = "/assets/:splat"
+  status = 200
+  force = true
+
+# SPA: serve index.html for all other routes (React Router). Must be last so /s/*, /.internal/*, /assets/* take precedence.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[functions]
+  node_bundler = "esbuild"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Headers = "Authorization, Content-Type"
+
+# Hide admin from search engines (no link from site; access is server-checked)
+[[headers]]
+  for = "/admin.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+[[headers]]
+  for = "/.internal/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[scheduled]]
+  function = "cleanup"
+  cron = "0 * * * *"

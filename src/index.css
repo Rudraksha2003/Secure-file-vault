@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme: apply class on html for light/dark */
+html.theme-light body,
+html.theme-light .bg-slate-950 {
+  background-color: #f1f5f9 !important;
+}
+html.theme-light .text-slate-100,
+html.theme-light .text-white {
+  color: #0f172a !important;
+}
+html.theme-light .text-slate-400 {
+  color: #475569 !important;
+}
+html.theme-light .text-slate-300 {
+  color: #334155 !important;
+}
+html.theme-light .text-slate-500 {
+  color: #64748b !important;
+}
+html.theme-light .border-slate-800,
+html.theme-light .border-slate-700,
+html.theme-light .border-slate-600 {
+  border-color: #e2e8f0 !important;
+}
+html.theme-light [class*="bg-slate-900"],
+html.theme-light .bg-slate-900\/50 {
+  background-color: #ffffff !important;
+}
+html.theme-light .bg-slate-800,
+html.theme-light .bg-slate-800\/50 {
+  background-color: #f8fafc !important;
+}
+html.theme-light .bg-slate-700 {
+  background-color: #e2e8f0 !important;
+}
+html.theme-light .bg-slate-600 {
+  background-color: #cbd5e1 !important;
+}
+html.theme-light input[type="text"],
+html.theme-light input[type="email"],
+html.theme-light input[type="password"],
+html.theme-light textarea,
+html.theme-light .bg-slate-800 input,
+html.theme-light input.bg-slate-800 {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Theme toggle: always show sun/moon icon clearly in both themes */
+.theme-toggle-btn {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+}
+html.theme-light .theme-toggle-btn {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #334155 !important;
+}
+html.theme-light .theme-toggle-btn:hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+html.theme-light .theme-toggle-btn svg {
+  color: inherit;
+}
+
+.hidden { display: none; }
+@media (pointer: coarse) {
+  button, [role="button"], .touch-manipulation {
+    touch-action: manipulation;
+  }
+}
+
+/* Custom cursor: only on devices with fine pointer (desktop) */
+@media (pointer: fine) {
+  body.custom-cursor-active {
+    cursor: none;
+  }
+  body.custom-cursor-active * {
+    cursor: none;
+  }
+}
+
+/* Custom cursor elements */
+.custom-cursor__outer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 28px;
+  height: 28px;
+  margin-left: -14px;
+  margin-top: -14px;
+  border: 2px solid rgba(251, 191, 36, 0.8);
+  border-radius: 50%;
+  transition: width 0.2s ease, height 0.2s ease, margin 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.custom-cursor__outer--pointer {
+  width: 40px;
+  height: 40px;
+  margin-left: -20px;
+  margin-top: -20px;
+  border-color: rgba(251, 191, 36, 0.6);
+  background: rgba(251, 191, 36, 0.12);
+}
+.custom-cursor__outer--text {
+  width: 2px;
+  height: 22px;
+  margin-left: -1px;
+  margin-top: -11px;
+  border: none;
+  border-radius: 0;
+  background: rgba(251, 191, 36, 0.95);
+  animation: cursor-blink 1s step-end infinite;
+}
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.custom-cursor__inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  margin-top: -3px;
+  background: rgb(251, 191, 36);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.3);
+}
+
+/* Text areas: ensure native text cursor hint for accessibility when custom cursor is off (e.g. touch) */
+input:not([type="submit"]):not([type="button"]),
+textarea,
+[contenteditable="true"] {
+  cursor: text;
+}
+a, button, [role="button"] {
+  cursor: pointer;
+}

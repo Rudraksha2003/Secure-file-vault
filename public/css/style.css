@@ -1,0 +1,181 @@
+/* Shared utility – Tailwind handles most styling */
+.hidden {
+  display: none;
+}
+
+/* Theme toggle: respect safe area on notched devices */
+.theme-toggle-wrap.safe-area-tr {
+  top: max(1rem, env(safe-area-inset-top, 0px));
+  right: max(1rem, env(safe-area-inset-right, 0px));
+}
+
+/* Mobile: safe area, touch targets, modal scroll */
+@supports (padding: env(safe-area-inset-bottom)) {
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Touch-friendly: reduce double-tap zoom on buttons (iOS) */
+@media (pointer: coarse) {
+  button, [role="button"], .touch-manipulation {
+    touch-action: manipulation;
+  }
+}
+
+/* Modal scroll on small viewports */
+@media (max-width: 640px) {
+  [id="shareModal"] > div {
+    max-height: 90vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* ----- Light theme (html.theme-light) ----- */
+html.theme-light body,
+html.theme-light .bg-slate-950 {
+  background-color: #f1f5f9 !important;
+}
+html.theme-light .text-slate-100,
+html.theme-light .text-white {
+  color: #0f172a !important;
+}
+html.theme-light .text-slate-400 {
+  color: #475569 !important;
+}
+html.theme-light .text-slate-300 {
+  color: #334155 !important;
+}
+html.theme-light .text-slate-500 {
+  color: #64748b !important;
+}
+html.theme-light .border-slate-800,
+html.theme-light .border-slate-700,
+html.theme-light .border-slate-600 {
+  border-color: #e2e8f0 !important;
+}
+html.theme-light [class*="bg-slate-900"],
+html.theme-light .bg-slate-900\/50 {
+  background-color: #ffffff !important;
+}
+html.theme-light .bg-slate-800,
+html.theme-light .bg-slate-800\/50 {
+  background-color: #f8fafc !important;
+}
+html.theme-light .bg-slate-700 {
+  background-color: #e2e8f0 !important;
+}
+html.theme-light .bg-slate-600 {
+  background-color: #cbd5e1 !important;
+}
+html.theme-light input[type="text"],
+html.theme-light input[type="email"],
+html.theme-light input[type="password"],
+html.theme-light textarea,
+html.theme-light .bg-slate-800 input,
+html.theme-light input.bg-slate-800 {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+html.theme-light .placeholder-slate-500::placeholder {
+  color: #94a3b8 !important;
+}
+html.theme-light .focus\:ring-offset-slate-950:focus,
+html.theme-light .focus\:ring-offset-2:focus {
+  --tw-ring-offset-color: #f1f5f9;
+}
+html.theme-light a.rounded-xl.border,
+html.theme-light button.rounded-xl.border {
+  border-color: #cbd5e1 !important;
+  color: #334155 !important;
+}
+html.theme-light a.rounded-xl.border:hover,
+html.theme-light button.rounded-xl.border:hover {
+  border-color: #94a3b8 !important;
+  color: #0f172a !important;
+}
+html.theme-light a.text-slate-400:hover,
+html.theme-light .hover\:text-white:hover {
+  color: #0f172a !important;
+}
+html.theme-light .theme-toggle-btn {
+  border-color: #cbd5e1 !important;
+  background-color: rgba(248, 250, 252, 0.9) !important;
+  color: #475569 !important;
+}
+html.theme-light .theme-toggle-btn:hover {
+  border-color: #94a3b8 !important;
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+html.theme-light .theme-toggle-btn:focus {
+  --tw-ring-offset-color: #f1f5f9;
+}
+html.theme-light .focus\:ring-offset-slate-950 {
+  --tw-ring-offset-color: #f1f5f9;
+}
+/* Light: cards / list items hover */
+html.theme-light .hover\:bg-slate-800:hover,
+html.theme-light .hover\:border-slate-600:hover {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+}
+html.theme-light .hover\:bg-slate-700:hover,
+html.theme-light .hover\:bg-slate-600:hover {
+  background-color: #cbd5e1 !important;
+}
+html.theme-light .active\:bg-slate-800:active {
+  background-color: #f1f5f9 !important;
+}
+html.theme-light .hover\:bg-slate-800\/50:hover,
+html.theme-light .active\:bg-slate-800\/50:active {
+  background-color: #f1f5f9 !important;
+}
+html.theme-light .bg-slate-800\/50.hover\:bg-slate-800:hover {
+  background-color: #f1f5f9 !important;
+}
+/* Light: nav/primary-style buttons (bg-slate-700 / bg-slate-800) keep readable text */
+html.theme-light .bg-slate-700.text-white,
+html.theme-light .bg-slate-800.text-white,
+html.theme-light .bg-slate-600.text-white,
+html.theme-light a.bg-slate-700,
+html.theme-light a.bg-slate-800 {
+  color: #0f172a !important;
+}
+html.theme-light .hover\:bg-slate-500:hover {
+  background-color: #94a3b8 !important;
+}
+/* Red / amber alerts in light mode */
+html.theme-light .bg-red-950\/30,
+html.theme-light .border-red-900\/50 {
+  background-color: #fef2f2 !important;
+  border-color: #fecaca !important;
+}
+html.theme-light .text-red-300 {
+  color: #b91c1c !important;
+}
+html.theme-light .bg-amber-950\/40,
+html.theme-light .border-amber-900\/50 {
+  background-color: #fffbeb !important;
+  border-color: #fde68a !important;
+}
+html.theme-light .text-amber-200 {
+  color: #b45309 !important;
+}
+/* Admin / tables */
+html.theme-light .text-slate-400.font-mono {
+  color: #475569 !important;
+}
+html.theme-light .text-emerald-400 {
+  color: #059669 !important;
+}
+html.theme-light .text-red-400 {
+  color: #dc2626 !important;
+}
+html.theme-light .bg-slate-950\/80 {
+  background-color: rgba(15, 23, 42, 0.6) !important;
+}

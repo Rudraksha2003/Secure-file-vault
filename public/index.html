@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Secure Notes & Vault</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Outfit', 'system-ui', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script>(function(){var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t='dark';document.documentElement.classList.add(t==='light'?'theme-light':'theme-dark');})();</script>
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-100 font-sans antialiased">
+  <div class="max-w-2xl mx-auto px-4 sm:px-6 py-10 sm:py-16 md:py-24">
+    <header class="text-center mb-10 sm:mb-16">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-3">
+        Secure Notes & File Vault
+      </h1>
+      <p class="text-slate-400 text-base sm:text-lg">
+        Privacy-first note sharing and secure file storage.
+      </p>
+    </header>
+
+    <main class="space-y-6 sm:space-y-8">
+      <section class="rounded-2xl border border-slate-800 bg-slate-900/50 backdrop-blur-sm p-4 sm:p-8 shadow-xl">
+        <h2 class="text-lg sm:text-xl font-semibold text-white mb-2">Anonymous Secure Notes</h2>
+        <p class="text-slate-400 text-sm sm:text-base mb-4 sm:mb-6">
+          Create and share notes instantly without login. Optional password and expiry supported.
+        </p>
+        <a
+          href="create.html"
+          class="inline-flex items-center justify-center w-full sm:w-auto rounded-xl bg-amber-500 px-6 py-3 font-semibold text-slate-900 shadow-lg transition hover:bg-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-slate-950 touch-manipulation"
+        >
+          Create Anonymous Note
+        </a>
+      </section>
+
+      <section class="rounded-2xl border border-slate-800 bg-slate-900/50 backdrop-blur-sm p-4 sm:p-8 shadow-xl">
+        <h2 class="text-lg sm:text-xl font-semibold text-white mb-2">File Vault</h2>
+        <p class="text-slate-400 text-sm sm:text-base mb-4 sm:mb-6">
+          Upload and manage your files securely. Access only with your account.
+        </p>
+        <div class="flex flex-col sm:flex-row flex-wrap gap-3">
+          <a
+            href="login.html"
+            class="inline-flex items-center justify-center w-full sm:w-auto rounded-xl bg-slate-700 px-6 py-3 font-semibold text-white border border-slate-600 transition hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 focus:ring-offset-slate-950 touch-manipulation"
+          >
+            Login
+          </a>
+          <a
+            href="register.html"
+            class="inline-flex items-center justify-center w-full sm:w-auto rounded-xl bg-amber-500 px-6 py-3 font-semibold text-slate-900 shadow-lg transition hover:bg-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-slate-950 touch-manipulation"
+          >
+            Register
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="js/supabaseConfig.generated.js"></script>
+  <script type="module" src="js/main.js"></script>
+  <script type="module">
+    // Email-change confirmation links: apply session from hash then redirect (only when Supabase config is present).
+    const hash = window.location.hash || ''
+    if (hash.includes('type=email_change') && window.__SUPABASE_URL__ && window.__SUPABASE_ANON_KEY__) {
+      try {
+        const { supabase } = await import('./js/supabaseClient.js')
+        await supabase.auth.getSession()
+        window.location.replace('account.html?email_updated=1')
+      } catch (_) {}
+    }
+  </script>
+  <script src="js/theme.js"></script>
+</body>
+</html>

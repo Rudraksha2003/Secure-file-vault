@@ -1,0 +1,32 @@
+{
+  "name": "secure-file-vault",
+  "version": "1.0.0",
+  "description": "Secure notes and file vault with anonymous notes, collaborative notes, and authenticated file storage.",
+  "type": "module",
+  "scripts": {
+    "prebuild": "node scripts/generate-supabase-config.js",
+    "dev": "vite",
+    "build": "npm run prebuild && vite build",
+    "preview": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "bcryptjs": "^2.4.3",
+    "busboy": "^1.6.0",
+    "motion": "^11.18.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "vite": "^5.1.0"
+  },
+  "keywords": ["secure-notes", "file-vault", "supabase", "netlify"],
+  "author": "",
+  "license": "ISC"
+}

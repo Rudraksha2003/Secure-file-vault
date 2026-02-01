@@ -145,28 +145,6 @@ More detail: see `DEPLOY.md`.
 
 ---
 
-## What to Upload to GitHub
-
-**Upload everything in the project except what’s ignored by Git.**
-
-- **Include:**  
-  - `src/`, `public/`, `Netlify/`, `scripts/`  
-  - `index.html`, `package.json`, `package-lock.json`  
-  - `vite.config.js`, `tailwind.config.js`, `postcss.config.js`, `netlify.toml`  
-  - `.env.example`, `.gitignore`  
-  - `README.md`, `DEPLOY.md`, `ADMIN.md` (if you use them)
-
-- **Do not upload (already in `.gitignore`):**  
-  - `node_modules/` – run `npm install` after clone  
-  - `dist/` – produced by `npm run build`  
-  - `.env`, `.env.local` – real keys (use `.env.example` as a template)  
-  - `.netlify/` – local Netlify state  
-  - `public/js/supabaseConfig.generated.js` – generated at build from env  
-
-**One-line summary:** Commit and push all tracked files; `.gitignore` ensures secrets and build artifacts stay off GitHub.
-
----
-
 ## Project structure (high level)
 
 ```
@@ -188,4 +166,4 @@ secure-file-vault/
 
 ## License
 
-ISC (see `package.json`). Use and modify as you like; keep env and secrets out of the repo.
+ISC (see `package.json`).

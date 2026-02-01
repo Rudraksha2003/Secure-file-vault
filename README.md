@@ -71,6 +71,8 @@ Edit `.env` and set:
 
 **Do not commit `.env`** – it is listed in `.gitignore`.
 
+To require **email confirmation** on sign-up: in Supabase Dashboard go to **Authentication → Providers → Email** and enable **Confirm email**. Add your app URL (e.g. `http://localhost:5173/login` and your production login URL) to **Authentication → URL Configuration → Redirect URLs**.
+
 ### 3. Run locally
 
 ```bash

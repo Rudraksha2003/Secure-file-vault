@@ -10,14 +10,20 @@ export default function Register() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [emailSent, setEmailSent] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
     setLoading(true)
+    setEmailSent(false)
     try {
-      await register({ email, password })
-      navigate('/login')
+      const result = await register({ email, password })
+      if (result?.needsEmailConfirmation) {
+        setEmailSent(true)
+      } else {
+        navigate('/login')
+      }
     } catch (err) {
       setError(err.message)
     }
@@ -32,6 +38,16 @@ export default function Register() {
           <BackHome />
           <Card>
             <h1 className="text-2xl font-bold text-white mb-6">Register</h1>
+            {emailSent ? (
+              <div className="space-y-4 text-center">
+                <p className="text-slate-300">
+                  Check your email to confirm your account. Click the link in the message, then sign in.
+                </p>
+                <Link to="/login" className="inline-block text-amber-400 hover:text-amber-300 font-medium transition">
+                  Go to login
+                </Link>
+              </div>
+            ) : (
             <form className="space-y-4" onSubmit={handleSubmit}>
               {error && <p className="text-amber-400 text-sm">{error}</p>}
               <Input
@@ -59,6 +75,7 @@ export default function Register() {
                 <Link to="/login" className="hover:text-amber-400 transition">Already have an account? Login</Link>
               </p>
             </form>
+            )}
           </Card>
         </div>
       </PageContainer>

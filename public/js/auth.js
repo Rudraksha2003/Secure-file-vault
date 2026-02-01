@@ -15,9 +15,20 @@ export async function register() {
     return
   }
 
-  const { error } = await supabase.auth.signUp({ email: emailCheck.value, password: passwordRaw })
-  if (error) alert(error.message)
-  else window.location.href = 'login.html'
+  const base = window.location.origin + window.location.pathname.replace(/\/[^/]*$/, '/')
+  const emailRedirectTo = base + 'login.html'
+  const { data, error } = await supabase.auth.signUp(
+    { email: emailCheck.value, password: passwordRaw },
+    { options: { emailRedirectTo } }
+  )
+  if (error) {
+    alert(error.message)
+    return
+  }
+  if (data.session) {
+    return { needsEmailConfirmation: false }
+  }
+  return { needsEmailConfirmation: true }
 }
 
 export async function login() {

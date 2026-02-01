@@ -7,8 +7,14 @@ export async function register({ email, password }) {
   const pwCheck = validatePassword(password, 'Password')
   if (!pwCheck.valid) throw new Error(pwCheck.error)
 
-  const { error } = await supabase.auth.signUp({ email: emailCheck.value, password })
+  const redirectTo = `${window.location.origin}/login`
+  const { data, error } = await supabase.auth.signUp(
+    { email: emailCheck.value, password },
+    { options: { emailRedirectTo: redirectTo } }
+  )
   if (error) throw new Error(error.message)
+  // When "Confirm email" is enabled in Supabase, no session is created until the user confirms
+  return { needsEmailConfirmation: !data.session }
 }
 
 export async function login({ identifier, password }, navigate) {
